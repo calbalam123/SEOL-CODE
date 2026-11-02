@@ -4,29 +4,65 @@
   "description": "한국어 프로그래밍 언어 설이코드 지원",
   "version": "0.3.0",
   "publisher": "calbalam123",
-  "engines": { "vscode": "^1.80.0" },
-  "categories": ["Programming Languages"],
-  "keywords": ["seol", "korean", "language", "설이코드"],
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "keywords": [
+    "seol",
+    "korean",
+    "language",
+    "설이코드"
+  ],
   "main": "./extension.js",
-  "activationEvents": ["onLanguage:seol", "onCommand:seol.runFile", "onCommand:seol.openOutput"],
+  "activationEvents": [
+    "onLanguage:seol",
+    "onCommand:seol.runFile",
+    "onCommand:seol.openOutput"
+  ],
   "contributes": {
-    "languages": [{
-      "id": "seol",
-      "aliases": ["설이코드", "Seol Code", "seol"],
-      "extensions": [".seol"],
-      "configuration": "./language-configuration.json"
-    }],
-    "grammars": [{
-      "language": "seol",
-      "scopeName": "source.seol",
-      "path": "./syntaxes/seol.tmLanguage.json"
-    }],
+    "languages": [
+      {
+        "id": "seol",
+        "aliases": [
+          "설이코드",
+          "Seol Code",
+          "seol"
+        ],
+        "extensions": [
+          ".seol"
+        ],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "seol",
+        "scopeName": "source.seol",
+        "path": "./syntaxes/seol.tmLanguage.json"
+      }
+    ],
     "commands": [
-      { "command": "seol.runFile", "title": "설이코드: 현재 파일 실행", "category": "설이코드" },
-      { "command": "seol.openOutput", "title": "설이코드: 실행 터미널 열기", "category": "설이코드" }
+      {
+        "command": "seol.runFile",
+        "title": "설이코드: 현재 파일 실행",
+        "category": "설이코드",
+        "icon": "$(play)"
+      },
+      {
+        "command": "seol.openOutput",
+        "title": "설이코드: 실행 터미널 열기",
+        "category": "설이코드"
+      }
     ],
     "keybindings": [
-      { "command": "seol.runFile", "key": "f5", "when": "editorTextFocus && editorLangId == seol" }
+      {
+        "command": "seol.runFile",
+        "key": "f5",
+        "when": "editorTextFocus && editorLangId == seol"
+      }
     ],
     "configuration": {
       "title": "설이코드",
@@ -42,6 +78,15 @@
           "description": "seol.py 파일 경로. 비워두면 현재 작업공간 최상위 폴더의 seol.py를 사용합니다."
         }
       }
+    },
+    "menus": {
+      "editor/title": [
+        {
+          "command": "seol.runFile",
+          "when": "resourceExtname == .seol",
+          "group": "navigation@1"
+        }
+      ]
     }
   }
 }
