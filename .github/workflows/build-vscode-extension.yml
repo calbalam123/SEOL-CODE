@@ -1,0 +1,26 @@
+name: 설이코드 VS Code 확장 빌드
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'vscode-extension/**'
+      - '.github/workflows/build-vscode-extension.yml'
+  workflow_dispatch:
+
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: VSIX 패키지 만들기
+        run: npx --yes @vscode/vsce package --cwd vscode-extension
+      - name: VSIX 업로드
+        uses: actions/upload-artifact@v4
+        with:
+          name: SeolCode-VSCode-Extension
+          path: vscode-extension/*.vsix
+          retention-days: 30
