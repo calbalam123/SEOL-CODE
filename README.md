@@ -75,3 +75,10 @@ python seol.py
 5. 허용된 플랫폼 API를 이용한 봇 개발 도구 검토
 
 오류나 개선 아이디어는 GitHub Issues에 남겨 주세요.
+
+
+## 0.2.0 Windows 편집기 추가
+
+Windows 전용 한글 코드 편집기와 설치 프로그램이 추가되었습니다. 설치 방법은 [Windows 설치 및 사용법](WINDOWS_설치_및_사용법.md)을 확인하세요.
+
+새 기능의 상세 내용과 확장 인터프리터는 `editor.py` 및 `seol_language.py`에서 사용합니다. Windows 설치 파일은 GitHub Actions의 **SeolCode-Setup** 아티팩트로 제공됩니다.
