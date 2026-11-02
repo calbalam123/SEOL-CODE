@@ -1,8 +1,8 @@
 {
   "name": "seol-code",
   "displayName": "설이코드 (SEOL CODE)",
-  "description": "한국어 프로그래밍 언어 설이코드 지원",
-  "version": "0.3.0",
+  "description": "한국어 프로그래밍 언어 설이코드 지원 - Windows 독립 실행형",
+  "version": "0.4.0",
   "publisher": "calbalam123",
   "engines": {
     "vscode": "^1.80.0"
@@ -67,15 +67,10 @@
     "configuration": {
       "title": "설이코드",
       "properties": {
-        "seol.pythonPath": {
-          "type": "string",
-          "default": "python",
-          "description": "설이코드 실행에 사용할 Python 명령. Windows Python Launcher는 py -3으로 지정할 수 있습니다."
-        },
-        "seol.runnerPath": {
+        "seol.standaloneRunner": {
           "type": "string",
           "default": "",
-          "description": "seol.py 파일 경로. 비워두면 현재 작업공간 최상위 폴더의 seol.py를 사용합니다."
+          "description": "고급 설정: 포함된 설이코드 실행기를 대체할 실행 파일 경로"
         }
       }
     },
