@@ -1,0 +1,44 @@
+name: 설이코드 Windows 설치 파일 만들기
+
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: read
+
+jobs:
+  build-installer:
+    runs-on: windows-latest
+    steps:
+      - name: 저장소 내려받기
+        uses: actions/checkout@v4
+      - name: Python 설치
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: 테스트
+        run: |
+          python -m py_compile seol.py editor.py
+          python -m unittest discover -s tests -v
+      - name: PyInstaller 설치
+        run: python -m pip install --upgrade pyinstaller
+      - name: 편집기 EXE 빌드
+        run: pyinstaller --noconfirm --clean --onefile --windowed --name SeolCode editor.py
+      - name: Inno Setup 설치
+        run: choco install innosetup --yes --no-progress
+      - name: Windows 설치 프로그램 만들기
+        shell: pwsh
+        run: |
+          New-Item -ItemType Directory -Force -Path installer-output | Out-Null
+          & "C:\Program Files (x86)\Inno Setup 6\ISCC.exe" installer\seolcode.iss
+          if ($LASTEXITCODE -ne 0) { throw "Inno Setup 빌드 실패" }
+      - name: 설치 파일 업로드
+        uses: actions/upload-artifact@v4
+        with:
+          name: SeolCode-Setup
+          path: installer-output/SeolCode-Setup.exe
+          if-no-files-found: error
+          retention-days: 30
