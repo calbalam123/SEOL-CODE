@@ -1,28 +1,48 @@
-name: 설이코드 VS Code 확장 빌드
+name: 설이코드 독립형 VS Code 확장 빌드
 
 on:
   push:
     branches: [main]
     paths:
       - 'vscode-extension/**'
+      - 'seol.py'
+      - 'seol_language.py'
+      - 'seol_builtins.py'
       - '.github/workflows/build-vscode-extension.yml'
   workflow_dispatch:
 
 jobs:
   package:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+
+      - name: Python 준비
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: 독립 실행기 만들기
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install "pyinstaller>=6,<7"
+          pyinstaller --noconfirm --clean --onefile --console --name seol seol.py
+          New-Item -ItemType Directory -Force -Path vscode-extension/bin/win32-x64 | Out-Null
+          Copy-Item dist/seol.exe vscode-extension/bin/win32-x64/seol.exe
+
+      - name: Node.js 준비
+        uses: actions/setup-node@v4
         with:
           node-version: 20
-      - name: VSIX 패키지 만들기
+
+      - name: Windows용 VSIX 패키지 만들기
         working-directory: vscode-extension
-        run: npx --yes @vscode/vsce package
+        run: npx --yes @vscode/vsce package --target win32-x64
+
       - name: VSIX 업로드
         uses: actions/upload-artifact@v4
         with:
-          name: SeolCode-VSCode-Extension
+          name: SeolCode-Standalone-VSCode-Extension
           path: vscode-extension/*.vsix
           if-no-files-found: error
           retention-days: 30
