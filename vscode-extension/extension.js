@@ -15,44 +15,33 @@ function activate(context) {
     }
 
     const document = editor.document;
-    if (document.languageId !== 'seol' && !document.fileName.endsWith('.seol')) {
+    if (!document.fileName.toLowerCase().endsWith('.seol')) {
       vscode.window.showErrorMessage('확장자가 .seol인 설이코드 파일에서 실행해 주세요.');
       return;
     }
 
-    if (document.isUntitled) {
-      const saved = await document.save();
-      if (!saved) return;
-    } else if (document.isDirty) {
+    if (document.isDirty) {
       const saved = await document.save();
       if (!saved) return;
     }
 
-    const workspace = vscode.workspace.getWorkspaceFolder(document.uri);
-    const config = vscode.workspace.getConfiguration('seol', document.uri);
-    const configuredRunner = config.get('runnerPath', '').trim();
-    const runner = configuredRunner
-      ? path.resolve(configuredRunner)
-      : (workspace ? path.join(workspace.uri.fsPath, 'seol.py') : '');
-
-    if (!runner || !fs.existsSync(runner)) {
-      const choice = await vscode.window.showErrorMessage(
-        'seol.py 실행기를 찾지 못했습니다. SEOL-CODE 저장소 폴더를 VS Code로 열거나 seol.runnerPath를 설정하세요.',
-        '설치 안내'
-      );
-      if (choice) {
-        vscode.env.openExternal(vscode.Uri.parse('https://github.com/calbalam123/SEOL-CODE'));
-      }
+    if (process.platform !== 'win32') {
+      vscode.window.showErrorMessage('현재 독립 실행기는 Windows x64용입니다.');
       return;
     }
 
-    const python = config.get('pythonPath', 'python').trim() || 'python';
+    const runner = path.join(context.extensionPath, 'bin', 'win32-x64', 'seol.exe');
+    if (!fs.existsSync(runner)) {
+      vscode.window.showErrorMessage('설이코드 독립 실행기가 확장 프로그램에 포함되어 있지 않습니다. 최신 Windows용 VSIX를 다시 설치해 주세요.');
+      return;
+    }
+
     const quote = value => '"' + value.replace(/"/g, '\\"') + '"';
     if (!terminal) {
       terminal = vscode.window.createTerminal({ name: '설이코드 실행' });
     }
     terminal.show(true);
-    terminal.sendText(python + ' ' + quote(runner) + ' ' + quote(document.fileName), true);
+    terminal.sendText(quote(runner) + ' ' + quote(document.fileName), true);
   });
 
   const output = vscode.commands.registerCommand('seol.openOutput', () => {
