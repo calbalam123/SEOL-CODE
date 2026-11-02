@@ -1,0 +1,20 @@
+name: 설이코드 테스트
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 저장소 내려받기
+        uses: actions/checkout@v4
+      - name: Python 설치
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: 문법 검사 및 테스트
+        run: |
+          python -m py_compile seol.py
+          python -m unittest discover -s tests -v
