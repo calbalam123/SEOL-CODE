@@ -12,7 +12,6 @@ DefaultDirName={autopf}\SeolCode
 DefaultGroupName={#MyAppName}
 OutputDir=..\installer-output
 OutputBaseFilename=SeolCode-Setup
-SetupIconFile=
 Compression=lzma
 SolidCompression=yes
 WizardStyle=modern
