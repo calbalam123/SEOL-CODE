@@ -41,7 +41,7 @@ function activate(context) {
       terminal = vscode.window.createTerminal({ name: '설이코드 실행' });
     }
     terminal.show(true);
-    terminal.sendText(quote(runner) + ' ' + quote(document.fileName), true);
+    terminal.sendText('& ' + quote(runner) + ' ' + quote(document.fileName), true);
   });
 
   const output = vscode.commands.registerCommand('seol.openOutput', () => {
