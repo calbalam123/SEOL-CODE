@@ -25,7 +25,9 @@ def translate(source):
         indent = line[:len(line)-len(s)]
         if not s or s.startswith("#"):
             lines.append(line); continue
-        if s.startswith("명령어(") and s.endswith(":"): s = "if __seol_command__(" + s[len("명령어("):-1] + ":\n        elif s.startswith("만약 ") and s.endswith(":"): s = "if " + s[3:]
+        if s.startswith("명령어(") and s.endswith(":"):
+            s = "if __seol_command__(" + s[len("명령어("):-1] + ":"
+        elif s.startswith("만약 ") and s.endswith(":"): s = "if " + s[3:]
         elif s == "아니면:": s = "else:"
         elif s.startswith("반복 ") and s.endswith("회:"):
             s = "for __seol_index in range(" + s[3:-2].strip() + "):"
