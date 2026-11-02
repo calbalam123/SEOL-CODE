@@ -86,3 +86,17 @@ python seol.py
 Windows 전용 한글 코드 편집기와 설치 프로그램이 추가되었습니다. 설치 방법은 [Windows 설치 및 사용법](WINDOWS_설치_및_사용법.md)을 확인하세요.
 
 새 기능의 상세 내용과 확장 인터프리터는 `editor.py` 및 `seol_language.py`에서 사용합니다. Windows 설치 파일은 GitHub Actions의 **SeolCode-Setup** 아티팩트로 제공됩니다.
+
+
+## VS Code에서 설이코드 사용하기
+
+VS Code 확장 기능이 `vscode-extension/` 폴더에 추가되었습니다. `.seol` 문법 강조, 자동 괄호·들여쓰기, 한국어 코드 조각, F5 실행을 지원합니다.
+
+1. SEOL-CODE 저장소를 내려받아 압축을 풉니다.
+2. VS Code에서 저장소의 최상위 폴더를 엽니다.
+3. Python 3.10 이상이 설치되어 있는지 확인합니다.
+4. [VS Code 확장 빌드 결과](https://github.com/calbalam123/SEOL-CODE/actions/workflows/build-vscode-extension.yml)에서 최신 `SeolCode-VSCode-Extension` 아티팩트를 내려받아 압축을 풉니다.
+5. VS Code 확장 탭의 `...` 메뉴에서 `Install from VSIX...`를 선택해 VSIX 파일을 설치합니다.
+6. 저장소 안의 `.seol` 파일을 열고 F5를 누릅니다.
+
+실행기는 저장소 최상위의 `seol.py`를 사용합니다. 저장소 폴더를 작업공간으로 열어야 합니다. 자세한 내용은 [VS Code 확장 안내](vscode-extension/README.md)를 확인하세요.
