@@ -6,7 +6,7 @@ import io
 import tkinter as tk
 from tkinter import filedialog, messagebox, ttk
 from pathlib import Path
-from seol import Interpreter, SeolError, VERSION
+from seol_language import Interpreter, SeolError, VERSION
 
 class SeolEditor:
     def __init__(self, root):
