@@ -1,8 +1,9 @@
 """설이코드 0.2.0 확장 인터프리터."""
 import ast
 import operator
+from seol_builtins import BUILTINS
 
-VERSION = "0.2.0"
+VERSION = "0.3.0"
 OPS = {ast.Add: operator.add, ast.Sub: operator.sub, ast.Mult: operator.mul,
        ast.Div: operator.truediv, ast.FloorDiv: operator.floordiv,
        ast.Mod: operator.mod, ast.Pow: operator.pow}
@@ -42,6 +43,7 @@ class Interpreter:
           "출력": self._print, "길이": len, "문자열": str, "정수": int, "실수": float,
           "반올림": round, "절댓값": abs, "최댓값": max, "최솟값": min, "합계": sum,
           "추가": self._append, "포함": lambda a,b: b in a}
+        self.env.update(BUILTINS)
         self.depth = 0
         self.max_loop = 100000
     @staticmethod
