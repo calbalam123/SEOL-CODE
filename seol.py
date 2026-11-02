@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """설이코드 명령줄 실행기 및 카카오봇 변환기."""
+# 카카오봇 컴파일러 변경사항이 독립형 VS Code 실행 파일에 반영되도록 함께 빌드합니다.
 import sys
 from pathlib import Path
 from seol_language import Interpreter, SeolError, VERSION
