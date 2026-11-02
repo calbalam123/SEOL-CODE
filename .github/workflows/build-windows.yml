@@ -3,10 +3,9 @@ name: 설이코드 Windows 설치 파일 만들기
 on:
   push:
     branches: [main]
-  workflow_dispatch:
-  push:
     tags:
       - "v*"
+  workflow_dispatch:
 
 permissions:
   contents: read
