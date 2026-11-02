@@ -21,7 +21,7 @@ jobs:
           python-version: "3.12"
       - name: 테스트
         run: |
-          python -m py_compile seol.py editor.py
+          python -m py_compile seol.py seol_language.py editor.py
           python -m unittest discover -s tests -v
       - name: PyInstaller 설치
         run: python -m pip install --upgrade pyinstaller
