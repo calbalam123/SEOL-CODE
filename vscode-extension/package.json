@@ -2,7 +2,7 @@
   "name": "seol-code",
   "displayName": "설이코드 (SEOL CODE)",
   "description": "한국어 프로그래밍 언어 설이코드 지원 - Windows 독립 실행형",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "publisher": "calbalam123",
   "engines": {
     "vscode": "^1.80.0"
@@ -20,6 +20,7 @@
   "activationEvents": [
     "onLanguage:seol",
     "onCommand:seol.runFile",
+    "onCommand:seol.compileBot",
     "onCommand:seol.openOutput"
   ],
   "contributes": {
@@ -52,6 +53,12 @@
         "icon": "$(play)"
       },
       {
+        "command": "seol.compileBot",
+        "title": "설이코드: 카카오봇 연결 파일 만들기",
+        "category": "설이코드",
+        "icon": "$(file-code)"
+      },
+      {
         "command": "seol.openOutput",
         "title": "설이코드: 실행 터미널 열기",
         "category": "설이코드"
@@ -80,6 +87,11 @@
           "command": "seol.runFile",
           "when": "resourceExtname == .seol",
           "group": "navigation@1"
+        },
+        {
+          "command": "seol.compileBot",
+          "when": "resourceExtname == .seol",
+          "group": "navigation@2"
         }
       ]
     }
