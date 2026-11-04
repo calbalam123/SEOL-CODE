@@ -1,0 +1,25 @@
+name: Build MyLanguages Studio VSIX
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "MyLanguagesStudio/**"
+      - ".github/workflows/build-mylanguages-vsix.yml"
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Package VS Code extension
+        working-directory: MyLanguagesStudio/vscode-extension
+        run: |
+          npm install --global @vscode/vsce
+          vsce package --out mylanguages-studio.vsix
+      - uses: actions/upload-artifact@v4
+        with:
+          name: MyLanguagesStudio-VSIX
+          path: MyLanguagesStudio/vscode-extension/mylanguages-studio.vsix
+          if-no-files-found: error
