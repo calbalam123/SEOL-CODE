@@ -1,0 +1,19 @@
+{
+  "iconDefinitions": {
+    "_db": {
+      "iconPath": "./nexadb.svg"
+    },
+    "_k": {
+      "iconPath": "./korin.svg"
+    }
+  },
+  "fileExtensions": {
+    "db": "_db",
+    "nql": "_db",
+    "k": "_k",
+    "khtml": "_k",
+    "kcss": "_k",
+    "kjs": "_k"
+  },
+  "file": "_k"
+}
