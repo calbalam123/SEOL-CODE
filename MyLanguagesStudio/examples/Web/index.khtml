@@ -1,0 +1,3 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Korin 웹 프로젝트</title><link rel="stylesheet" href="style.kcss"></head>
+<body><main class="card"><h1>안녕하세요, Korin!</h1><p>한국어 기반 통합 프로그래밍 환경입니다.</p><button id="hello">눌러보기</button><p id="result"></p></main><script src="app.kjs"></script></body></html>
