@@ -1,0 +1,8 @@
+{
+  "scopeName": "text.html.korin",
+  "patterns": [
+    {
+      "include": "text.html.basic"
+    }
+  ]
+}
