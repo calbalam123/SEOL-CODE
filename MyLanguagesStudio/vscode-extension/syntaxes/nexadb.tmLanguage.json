@@ -1,0 +1,22 @@
+{
+  "scopeName": "source.nexadb",
+  "patterns": [
+    {
+      "name": "comment.line.number-sign",
+      "match": "#.*$"
+    },
+    {
+      "name": "string.quoted.double",
+      "begin": "\"",
+      "end": "\""
+    },
+    {
+      "name": "keyword.control.nexadb",
+      "match": "\\\\b(데이터베이스|데이터베이스열기|테이블|생성|추가|조회|조건|실행|테이블목록|저장|롤백)\\\\b"
+    },
+    {
+      "name": "constant.numeric",
+      "match": "\\\\b[0-9]+\\\\b"
+    }
+  ]
+}
