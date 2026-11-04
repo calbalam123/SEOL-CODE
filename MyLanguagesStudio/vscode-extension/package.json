@@ -1,0 +1,122 @@
+{
+  "name": "mylanguages-studio",
+  "displayName": "MyLanguages Studio",
+  "description": "Korin and NexaDB language support",
+  "version": "1.0.0",
+  "publisher": "mylanguages-lab",
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "categories": [
+    "Programming Languages",
+    "Themes"
+  ],
+  "main": "./extension.js",
+  "contributes": {
+    "languages": [
+      {
+        "id": "korin",
+        "aliases": [
+          "Korin"
+        ],
+        "extensions": [
+          ".k"
+        ]
+      },
+      {
+        "id": "nexadb",
+        "aliases": [
+          "NexaDB"
+        ],
+        "extensions": [
+          ".nql"
+        ]
+      },
+      {
+        "id": "korinhtml",
+        "aliases": [
+          "Korin HTML"
+        ],
+        "extensions": [
+          ".khtml"
+        ]
+      },
+      {
+        "id": "korincss",
+        "aliases": [
+          "Korin CSS"
+        ],
+        "extensions": [
+          ".kcss"
+        ]
+      },
+      {
+        "id": "korinjs",
+        "aliases": [
+          "Korin JS"
+        ],
+        "extensions": [
+          ".kjs"
+        ]
+      }
+    ],
+    "grammars": [
+      {
+        "language": "korin",
+        "scopeName": "source.korin",
+        "path": "./syntaxes/korin.tmLanguage.json"
+      },
+      {
+        "language": "nexadb",
+        "scopeName": "source.nexadb",
+        "path": "./syntaxes/nexadb.tmLanguage.json"
+      },
+      {
+        "language": "korinhtml",
+        "scopeName": "text.html.korin",
+        "path": "./syntaxes/korinhtml.tmLanguage.json"
+      },
+      {
+        "language": "korincss",
+        "scopeName": "source.css.korin",
+        "path": "./syntaxes/korincss.tmLanguage.json"
+      },
+      {
+        "language": "korinjs",
+        "scopeName": "source.js.korin",
+        "path": "./syntaxes/korinjs.tmLanguage.json"
+      }
+    ],
+    "commands": [
+      {
+        "command": "mylanguages.runKorin",
+        "title": "Korin: 현재 파일 실행"
+      },
+      {
+        "command": "mylanguages.runNexaDB",
+        "title": "NexaDB: 현재 파일 실행"
+      },
+      {
+        "command": "mylanguages.buildWeb",
+        "title": "Korin: 웹 프로젝트 빌드"
+      }
+    ],
+    "iconThemes": [
+      {
+        "id": "mylanguages-icons",
+        "label": "MyLanguages Studio Icons",
+        "path": "./icons/icon-theme.json"
+      }
+    ],
+    "snippets": [
+      {
+        "language": "korin",
+        "path": "./snippets/korin.json"
+      },
+      {
+        "language": "nexadb",
+        "path": "./snippets/nexadb.json"
+      }
+    ]
+  }
+}
