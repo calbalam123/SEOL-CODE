@@ -1,0 +1,22 @@
+{
+  "scopeName": "source.korin",
+  "patterns": [
+    {
+      "name": "comment.line.number-sign",
+      "match": "#.*$"
+    },
+    {
+      "name": "string.quoted.double",
+      "begin": "\"",
+      "end": "\""
+    },
+    {
+      "name": "constant.numeric",
+      "match": "\\\\b[0-9]+(\\\\.[0-9]+)?\\\\b"
+    },
+    {
+      "name": "keyword.control.korin",
+      "match": "\\\\b(변수|출력|입력|만약|아니면|동안|각각|함수|반환|클래스|가져오기|에서|참|거짓|없음|그리고|또는|아님)\\\\b"
+    }
+  ]
+}
