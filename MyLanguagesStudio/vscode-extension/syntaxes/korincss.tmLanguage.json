@@ -1,0 +1,8 @@
+{
+  "scopeName": "source.css.korin",
+  "patterns": [
+    {
+      "include": "source.css"
+    }
+  ]
+}
