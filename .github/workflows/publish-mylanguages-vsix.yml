@@ -1,0 +1,35 @@
+name: Build and commit MyLanguages Studio VSIX
+on:
+  push:
+    paths:
+      - ".github/workflows/publish-mylanguages-vsix.yml"
+      - "MyLanguagesStudio/vscode-extension/**"
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Package VS Code extension
+        working-directory: MyLanguagesStudio/vscode-extension
+        run: |
+          npm install --global @vscode/vsce
+          vsce package --out mylanguages-studio.vsix
+      - name: Commit VSIX to repository
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add MyLanguagesStudio/vscode-extension/mylanguages-studio.vsix
+          if git diff --cached --quiet; then
+            echo "VSIX is already up to date"
+          else
+            git commit -m "Build MyLanguages Studio VSIX"
+            git push
+          fi
